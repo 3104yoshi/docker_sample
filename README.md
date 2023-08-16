@@ -1,3 +1,9 @@
+ * 起動方法
+  - docker build -t app .
+  - docker run --name ranking_app -d -p 4000:80 app
+ * 接続方法
+  - http://localhost:4000/
+
  * FROM
   - 言語、実行環境のほか、OS 等も指定できる。(python, node, ubuntu....)
   - バージョンを指定できる (python:3.8)
