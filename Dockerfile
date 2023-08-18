@@ -1,8 +1,4 @@
 # syntax=docker/dockerfile:1
-
-FROM postgres:14.4-alpine
-ENV LANG ja_JP.utf8
-
 # FROM node:18-alpine
 FROM node:14.17.6-alpine3.14
 RUN yarn install --production
