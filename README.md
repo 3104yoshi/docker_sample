@@ -28,12 +28,6 @@
 
  * ENV
   - 環境変数を指定する
-  
-  ENV DB_HOST="192.168.2.201" \
-    DB_PORT="3306" \
-    DB_USER="myapp" \
-    DB_PASSWD="ZbGc7#adG87GBfVC" \
-    DB_DATABASE="sample"
 
  * 参考
   - https://docs.docker.jp/engine/reference/builder.html
