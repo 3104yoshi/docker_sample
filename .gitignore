@@ -1,8 +1,8 @@
 *
 !src/
-!./config.ini
+!/src/.gitignore
 !docker-compose.yaml
-!config.env
-!dbsetup.sh
 !/postgres
-!.gitignore
+/postgres/*
+!/postgres/init
+!/postgres/init/*.sql
