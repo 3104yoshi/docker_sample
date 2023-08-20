@@ -1,22 +1,26 @@
-import os
-import sqlite3
+import psycopg2
 
-databaseName = os.path.join(os.getcwd(), 'app.db')
+def getconnection():
+    return psycopg2.connect(host='localhost',
+                        dbname='postgres',
+                        user='postgres',
+                        password='postgres')
 
 class userCredentialAccessor:
     def getUser(userCredential):
-        with sqlite3.connect(databaseName) as connection:
+        with getconnection() as connection:
             cursor = connection.cursor()
-            cursor.execute('SELECT * FROM User WHERE UserName=? and PassWord=? ', (userCredential.userName, userCredential.password))
+            cursor.execute('SELECT * FROM Users WHERE UserName=%s and PassWord=%s ', (userCredential.userName, userCredential.password))
             return cursor.fetchall()
     
     def addUser(userCredential):
-        with sqlite3.connect(databaseName) as connection:
+        with getconnection() as connection:
             cursor = connection.cursor()
-            cursor.execute('INSERT INTO User VALUES(?, ?, ?)', (userCredential.userName, userCredential.password, userCredential.updateDate))
+            cursor.execute('INSERT INTO Users VALUES(%s, %s, %s)', (userCredential.userName, userCredential.password, userCredential.updateDate))
     
     def checkUserIs(userCredential):
-        with sqlite3.connect(databaseName) as connection:
+        with getconnection() as connection:
             cursor = connection.cursor()
-            cursor.execute('SELECT * FROM User WHERE UserName=? ', (userCredential.userName, ))
+            cursor.execute('SELECT * FROM Users WHERE UserName=%s ', (userCredential.userName, ))
             return cursor.fetchall()
+        
