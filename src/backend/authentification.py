@@ -9,6 +9,7 @@ from db.data.userCredential import userCredential
 
 authentification = Blueprint('auth', __name__)
 
+
 @authentification.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
