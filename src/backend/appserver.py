@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template, url_for
 from flask_login import LoginManager
 from api import api
 from authentification import authentification
@@ -18,8 +18,14 @@ login_manager.login_view = 'login'
 def load_user(user_id):
     return User(user_id)
 
+auth_prefix = 'auth'
+
+@login_manager.unauthorized_handler
+def unauthorized_handler():
+    return redirect(url_for(auth_prefix + '.login'))
+
 appserver.register_blueprint(api, url_prefix='/api')
-appserver.register_blueprint(authentification, url_prefix='/auth')
+appserver.register_blueprint(authentification, url_prefix='/' + auth_prefix)
 
 
 appserver.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY')

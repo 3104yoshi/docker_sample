@@ -2,6 +2,7 @@
 !src/
 !/src/.gitignore
 !docker-compose.yaml
+!setup.sh
 !/postgres
 /postgres/*
 !/postgres/init

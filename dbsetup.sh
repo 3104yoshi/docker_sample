@@ -1,1 +1,0 @@
-py ./postgres/init/insert.py
